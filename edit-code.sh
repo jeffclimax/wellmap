@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-pip3 install --user -e .
+virtualenv .venv
+source .venv/bin/activate
+pip3 install -e .
