@@ -1,0 +1,84 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.10.12, pytest-7.4.2, pluggy-1.3.0
+rootdir: /Users/jeff/wellmap
+configfile: pyproject.toml
+plugins: subtests-0.11.0, unordered-0.5.2, cov-4.1.0, hypothesis-6.84.2
+collected 603 items
+
+docs/basic_usage_python.rst F                                            [  0%]
+docs/example_layouts/bradford_assay.rst F                                [  0%]
+tests/test_config_error.py .                                             [  0%]
+tests/test_config_from_toml.py ..........................                [  4%]
+tests/test_configdict.py ..........                                      [  6%]
+tests/test_iter_ij_in_block.py .....................                     [  9%]
+tests/test_load.py ,,.,,.,,.,,.,,.,,.,,.,,,.,,,.,,,.,,.,,,,,,,,,,,,,,,,,,,,. [ 11%]
+,,,.,,,,.,,,.,,,.,,,.,,.,,.,,.,,.,.,.,.,,,.,,,.,.,,.,,.,.,.,.,.,.,,.,.,. [ 16%]
+,.,.,.,,.                                                                [ 16%]
+tests/test_path_manager.py ..........,,,.,,,.,,,.,.                      [ 19%]
+tests/test_plot.py ..................................................... [ 27%]
+...........                                                              [ 29%]
+tests/test_recursive_merge.py ..........................                 [ 33%]
+tests/test_resolve_path.py ..                                            [ 34%]
+tests/test_shift_config.py ................................              [ 39%]
+tests/test_table_from_config.py ......                                   [ 40%]
+tests/test_table_from_wells.py ...                                       [ 41%]
+tests/test_util.py ..................................................... [ 49%]
+........................................................................ [ 61%]
+........................................................................ [ 73%]
+........................................................................ [ 85%]
+........................................................                 [ 95%]
+tests/test_wells_from_config.py ............................             [ 99%]
+tests/docs/basic_usage_python.rst .                                      [ 99%]
+tests/docs/example_layouts/bradford_assay.rst .                          [100%]
+
+=================================== FAILURES ===================================
+_______________________ [doctest] basic_usage_python.rst _______________________
+041 
+042 .. figure:: basic_usage/std_curve_map.svg
+043 
+044 It is also possible to create maps like this directly from python, which may be 
+045 useful in interactive sessions such as Jupyter notebooks:
+046 
+047 .. code-block:: pycon
+048 
+049    >>> import wellmap
+050    >>> wellmap.show("std_curve.toml")
+UNEXPECTED EXCEPTION: FileNotFoundError(2, 'No such file or directory')
+Traceback (most recent call last):
+  File "/nix/store/zmk12p33784bpcan0nfnji3agxy2z8wg-python3-3.10.12/lib/python3.10/doctest.py", line 1350, in __run
+    exec(compile(example.source, filename, "single",
+  File "<doctest basic_usage_python.rst[1]>", line 1, in <module>
+  File "/Users/jeff/wellmap/wellmap/plot.py", line 156, in show
+    df = wellmap.load(toml_path)
+  File "/Users/jeff/wellmap/wellmap/file.py", line 215, in load
+    config, paths, concats, extras, deps = config_from_toml(
+  File "/Users/jeff/wellmap/wellmap/file.py", line 330, in config_from_toml
+    with open(toml_path, 'rb') as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/jeff/wellmap/std_curve.toml'
+/Users/jeff/wellmap/docs/basic_usage_python.rst:50: UnexpectedException
+_________________________ [doctest] bradford_assay.rst _________________________
+019   
+020 - The ``[bradford]`` block provides information on how to parse and interpret 
+021   the data, e.g. what format the data is in and what wavelengths were measured.  
+022   This information can be accessed in analysis scripts via the **extras** 
+023   argument to `load()`:
+024 
+025   .. code-block:: pycon
+026 
+027     >>> import wellmap
+028     >>> df, ex = wellmap.load('bradford_assay.toml', extras=True)
+UNEXPECTED EXCEPTION: FileNotFoundError(2, 'No such file or directory')
+Traceback (most recent call last):
+  File "/nix/store/zmk12p33784bpcan0nfnji3agxy2z8wg-python3-3.10.12/lib/python3.10/doctest.py", line 1350, in __run
+    exec(compile(example.source, filename, "single",
+  File "<doctest bradford_assay.rst[1]>", line 1, in <module>
+  File "/Users/jeff/wellmap/wellmap/file.py", line 215, in load
+    config, paths, concats, extras, deps = config_from_toml(
+  File "/Users/jeff/wellmap/wellmap/file.py", line 330, in config_from_toml
+    with open(toml_path, 'rb') as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/jeff/wellmap/bradford_assay.toml'
+/Users/jeff/wellmap/docs/example_layouts/bradford_assay.rst:28: UnexpectedException
+=========================== short test summary info ============================
+FAILED docs/basic_usage_python.rst::basic_usage_python.rst
+FAILED docs/example_layouts/bradford_assay.rst::bradford_assay.rst
+============= 2 failed, 601 passed, 107 subtests passed in 11.36s ==============
